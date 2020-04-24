@@ -1,0 +1,64 @@
+class Mario{
+  constructor(){
+  this.x=width/4;
+  this.y=height/2;
+  this.velx=10;
+  this.dir=0.5;
+  this.img=[];
+  this.frame=0;
+  for(var i=0;i<4;i++){
+    this.img[i]= loadImage("mario/mario_"+i+".gif");
+  }
+}
+  mostrar(){
+    push();
+    translate(this.x,this.y);
+    scale(this.dir,0.5);
+    imageMode(CENTER);
+    image(this.img[this.frame],0,0);
+    pop();
+    
+    
+  }
+  derecha(){
+  this.frame++;
+  this.x=this.x+this.velx;
+  this.dir=0.5;  
+  if(this.frame>3){
+      this.frame=0;
+    }
+  }
+  izquierda(){
+  this.frame++;
+  this.x=this.x-this.velx;
+  this.dir=-0.5;
+  if(this.frame>3){
+     this.frame=0;
+  }
+ }
+  arriba(){
+  this.frame++;
+    this.y=this.y-this.velx;
+    this.dir=0.5;
+    if(this.frame>3){
+        this.frame=0;
+    }
+  }
+  abajo(){
+  this.frame++;
+    this.y=this.y+this.velx;
+    this.dir=0.5;
+    if(this.frame>3){
+        this.frame=0;
+    }
+  }
+  disparar(){
+   bola.mostrar();
+    if(this.dir==0.5){
+      bola.derecha();
+      }
+    if(this.dir==-0.5){
+      bola.izquierda();
+     }
+  }
+}
